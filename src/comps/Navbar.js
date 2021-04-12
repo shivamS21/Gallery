@@ -1,5 +1,5 @@
 import { Avatar } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { GoogleLogout } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <h1 className="navbar__header">codeGYM </h1>
+      <h1 className="navbar__header">CodeGym </h1>
       
 
       {isSignedIn ? (

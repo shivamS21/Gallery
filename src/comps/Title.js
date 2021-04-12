@@ -22,7 +22,7 @@ const Title = () => {
     alert("Login failed")
   }
   return (
-    <div className="title"  className="home__page">
+    <div className="home__page">
        <h2>Your Pictures</h2>
       <p>A picture is a poem without words.</p>
       {!isSignedIn ? (<GoogleLogin
