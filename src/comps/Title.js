@@ -24,7 +24,7 @@ const Title = () => {
   return (
     <div className="home__page">
        <h2>Your Pictures</h2>
-      <p>A picture is a poem without words.</p>
+      {/* <p>A picture is a poem without words.</p> */}
       {!isSignedIn ? (<GoogleLogin
             clientId="816863996365-d1oaheqqrpnu80l82m5kruqn74gucb4f.apps.googleusercontent.com"
             render={(renderProps) => (
