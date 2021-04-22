@@ -7,8 +7,6 @@ import {
   selectUserData,
   setSignedIn,
   setUserData,
-
-
 } from "../features/userSlice";
 
 import "../styling/navbar.css";
@@ -16,18 +14,12 @@ import "../styling/navbar.css";
 const Navbar = () => {
   const isSignedIn = useSelector(selectSignedIn);
   const userData = useSelector(selectUserData);
-  
   const dispatch = useDispatch();
  
   const logout = (response) => {
     dispatch(setSignedIn(false));
     dispatch(setUserData(null));
-   
-  
   };
-
-
-
   return (
     <div className="navbar">
       <h1 className="navbar__header">CodeGym </h1>
