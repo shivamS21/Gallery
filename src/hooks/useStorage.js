@@ -25,7 +25,7 @@ const useStorage = (file) => {
       await collectionRef.add({ email: emailID, url, createdAt });
       setUrl(url);
     });
-  }, [file]);
+  }, [file, emailID]);
 
   return { progress, url, error };
 }
