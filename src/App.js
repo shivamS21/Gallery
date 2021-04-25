@@ -7,10 +7,12 @@ import Navbar from './comps/Navbar';
 import { useSelector } from "react-redux";
 import {
   selectSignedIn,
+  selectImg
 } from "./features/userSlice";
 function App() {
-  const [selectedImg, setSelectedImg] = useState(null);
+  // const [selectedImg, setSelectedImg] = useState(null);
   const isSignedIn = useSelector(selectSignedIn);
+  const selectedImg = useSelector(selectImg);
   return (
     <div className="App">
       <Navbar/>
@@ -18,10 +20,10 @@ function App() {
       {isSignedIn ? (
       <div>
       <UploadForm />
-      <ImageGrid setSelectedImg={setSelectedImg} />
-      { selectedImg && (
-        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-      )} 
+      <ImageGrid  />
+      { selectedImg?(
+        <Modal />
+      ):""} 
       </div>):("")}
     </div>
   );
