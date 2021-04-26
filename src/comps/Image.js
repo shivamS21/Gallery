@@ -15,14 +15,14 @@ export const Image = ({
     const dispatch = useDispatch();
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImg);
-  console.log(setSelectedImg?'exists':'not')
-
- 
+  // console.log(setSelectedImg?'exists':'not')
+  // console.log(SelectedImg)
+  
   return (
     <motion.div
       className="card-image-container "
       style={{ ...inverted, backgroundColor, originX: 0, originY: 0 }}
-    >
+    >  
       <motion.img
         className="card-image"
         src={SelectedImg}

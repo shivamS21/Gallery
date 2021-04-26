@@ -13,6 +13,33 @@ function App() {
   // const [selectedImg, setSelectedImg] = useState(null);
   const isSignedIn = useSelector(selectSignedIn);
   const selectedImg = useSelector(selectImg);
+  (async()=>{
+    let options = {
+      method: 'GET',
+      mode: 'cors',
+    
+  };
+  fetch('http://localhost:8000',options)
+  .then(response => {
+    console.log(response)
+    if(response.status === 200)
+    return response.json()
+   
+  })
+  .then(data => {
+    console.log("HEYYYYYYYYYYYYYYYYYYYYYYYY")
+    console.log(data)
+    if (data)
+      console.log(data)
+    else if(data.status === 404) {
+      
+    }
+  
+  })
+  .catch(err=>  console.log(err))
+
+  })()
+
   return (
     <div className="App">
       <Navbar/>
