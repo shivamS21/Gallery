@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { memo, useRef }  from "react";
-import { Scroll } from "framer"
+import { Scroll } from "framer-motion";
 import {
   selectImg,
   setSelectedImg

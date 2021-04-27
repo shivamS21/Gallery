@@ -4,19 +4,26 @@ import { motion } from 'framer-motion';
 import {
   selectSignedIn,
   selectImg,
-  setSelectedImg
+  selectedImgId,
+  setSelectedImg,
+  setSelectedImgId
 } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 const ImageGrid = () => {
   const { docs } = useFirestore('images');
   const dispatch = useDispatch();
+  const changeUrlId=(url,id)=>{
+    dispatch(setSelectedImg(url));
+    dispatch(setSelectedImgId(id));
+  }
   return (
     <div className="img-grid">
       {docs && docs.map(doc => (
         <motion.div className="img-wrap" key={doc.id} 
           layout
           whileHover={{ opacity: 1 }}s
-          onClick={() => dispatch(setSelectedImg(doc.url))}
+
+          onClick={() => changeUrlId(doc.url, doc.id)}
         >
           <motion.img src={doc.url} alt="uploaded pic"
             initial={{ opacity: 0 }}
