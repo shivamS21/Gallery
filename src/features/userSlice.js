@@ -5,7 +5,8 @@ const userSlice = createSlice({
   initialState: {
     isSignedIn: false,
     userData: null,
-    selectedImg:null
+    selectedImg:null,
+    selectedImgId:null,
   },
   reducers: {
     setSignedIn: (state, action) => {
@@ -17,17 +18,21 @@ const userSlice = createSlice({
     setSelectedImg: (state, action) => {
       state.selectedImg = action.payload;
     },
+    setSelectedImgId: (state, action) => {
+      state.selectedImgId = action.payload;
+    },
   },
 });
 
 export const {
   setSignedIn,
   setUserData,
-  setSelectedImg
+  setSelectedImg,
+  setSelectedImgId
 } = userSlice.actions;
 
 export const selectSignedIn = (state) => state.user.isSignedIn;
 export const selectUserData = (state) => state.user.userData;
 export const selectImg = (state) => state.user.selectedImg;
-
+export const selectImgId = (state) => state.user.selectedImgId;
 export default userSlice.reducer;

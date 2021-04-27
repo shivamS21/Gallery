@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import '../styling/styles.css';
 import {saveAs} from 'file-saver'
 import Blob from 'blob'
+import ImgFilter from "./FilterModel";
 
 
 // const httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -33,6 +34,8 @@ export const ContentPlaceholder = React.memo(() => {
     link.click();
     link.parentNode.removeChild(link);
   }
+
+
   
   return (
     <motion.div
@@ -42,7 +45,7 @@ export const ContentPlaceholder = React.memo(() => {
     
       
       <Button variant="contained" color="secondary" onClick={download}>Crop</Button>
-      <Button variant="contained" color="secondary" onClick={download}>Filter</Button>
+      <ImgFilter/>
       <Button variant="contained" color="secondary" onClick={download}>Delete</Button>
       <Button variant="contained" color="secondary" onClick={download}>Download</Button>
       
@@ -51,3 +54,5 @@ export const ContentPlaceholder = React.memo(() => {
     </motion.div>
   );
 });
+
+

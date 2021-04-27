@@ -1,0 +1,42 @@
+:root {
+  --color-black: #4d4646;
+  --color-grey: #5b5656;
+  --color-green: #7fcd91;
+  --color-white: #f5eaea;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-grey);
+  /* min-height: 100vh; */
+  color: var(--color-white);
+  padding: 0 5em;
+  width: fit-content;
+  min-width: 100%;
+}
+.app main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  position: relative;
+  margin: 5em;
+}
+.app main canvas {
+  background-color: var(--color-white);
+}
+.app main .options {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+  width: fit-content;
+}
+.app main .options > * {
+  margin-right: 1em;
+  height: 100%;
+}
+.app main .options .select {
+  width: max-content;
+}

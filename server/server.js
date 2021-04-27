@@ -42,12 +42,22 @@ mongoose.connect(url,connectionParams)
 
 
 
-const download=require('download')
-app.get('/',(req,res)=>{
-    res.send({"hellp":"he;;"})
+
+app.get('/fetch',async (req,res)=>{
+    var email = req.body.email;  
+    const resp=await User.find().select('img').lean()
+    console.log(resp)
+    // resp.img.data='data:application/octet-stream;base64,'+ resp.img.data.toString()
+        res.send(resp)
 })
+// app.get('/fetch',async (req,res)=>{
+
+//  
+
+// })
+
+
 app.get('/download',async (req,res)=>{
-    // await download('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png', 'dist');
     var imgId = req.body.imgId;  
     // const response=await User.find({"imgId":imgId })
     const response=await User.find()
@@ -56,21 +66,21 @@ app.get('/download',async (req,res)=>{
     else {
         console.log(response[0].img)
         const json={"name":response[0].img.data,"type":response[0].img.name}
-    // res.download('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png')
-    res.send(json)
+  res.send(json)
 }
 })
-// var data=new Buffer(req.file.buffer, 'base64')  //convert buffer to image 
-// fs.writeFileSync("programming.png", data);
+
 app.post('/upload',upload.single('file'),async(req,res)=>{
 //    console.log(req)
-    let img_id=uuidv4();
-    const response=await User.create({"userId":req.body.userId,imgId:img_id,img:{
+    
+    const response=await User.create({"userId":req.body.userId,img:{
     name:req.file.originalname,
-    data:req.file.buffer, 
+    data:'data:application/octet-stream;base64,'+req.file.buffer.toString(), 
     }})
-    res.send({"imgId":img_id});
+    console.log(response)
+    res.send({"imgId":response._id});
     })
+
 
 
 app.listen(port, (req,res)=>{

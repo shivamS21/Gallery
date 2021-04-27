@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Title from './comps/Title';
 import UploadForm from './comps/UploadForm';
-import ImageGrid from './comps/ImageGrid';
+import ImageGrid from './comps/ImageGrid.js';
 import Modal from './comps/Modal';
 import Navbar from './comps/Navbar';
+// import Example from './comps/FilterImg'
+// import Demo from './comps/Crop'
+
 import { useSelector } from "react-redux";
 import {
   selectSignedIn,
@@ -13,45 +16,21 @@ function App() {
   // const [selectedImg, setSelectedImg] = useState(null);
   const isSignedIn = useSelector(selectSignedIn);
   const selectedImg = useSelector(selectImg);
-  (async()=>{
-    let options = {
-      method: 'GET',
-      mode: 'cors',
-    
-  };
-  fetch('http://localhost:8000',options)
-  .then(response => {
-    console.log(response)
-    if(response.status === 200)
-    return response.json()
-   
-  })
-  .then(data => {
-    console.log("HEYYYYYYYYYYYYYYYYYYYYYYYY")
-    console.log(data)
-    if (data)
-      console.log(data)
-    else if(data.status === 404) {
-      
-    }
   
-  })
-  .catch(err=>  console.log(err))
-
-  })()
 
   return (
     <div className="App">
       <Navbar/>
       <Title/>
+      
       {isSignedIn ? (
       <div>
       <UploadForm />
-      <ImageGrid  />
+      <ImageGrid  /> 
       { selectedImg?(
         <Modal />
-      ):""} 
-      </div>):("")}
+      ):""}  
+      </div>):("")} 
     </div>
   );
 }
