@@ -12,7 +12,7 @@ export const Image = ({
   pointOfInterest = 0,
   backgroundColor="grey"
 }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImg);
   // console.log(setSelectedImg?'exists':'not')
