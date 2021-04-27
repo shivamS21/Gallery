@@ -11,7 +11,7 @@ import { motion, useMotionValue } from "framer-motion";
 // import { Link } from "react-router-dom";
 import { useInvertedBorderRadius } from "../utils/use-inverted-border-radius";
 
-import { ContentPlaceholder } from "./Taskbar";
+import { ContentPlaceholder } from "./Taskbar.jsx";
 import { Title } from "./TitleImg";
 import { Image } from "./Image";
 import { openSpring, closeSpring } from "./animation";
