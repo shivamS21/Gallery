@@ -9,6 +9,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import ImgFilter from "./FilterModel";
+import ImgCrop from "./CropModel";
 export const ContentPlaceholder = React.memo(() => {
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImgId);
@@ -27,7 +28,7 @@ export const ContentPlaceholder = React.memo(() => {
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      <p style={{ color:"white" }}> Crop  </p>
+      <ImgCrop/>
       <ImgFilter/>
       <Button variant="contained" color="secondary" onClick={handleClick}>Delete</Button>
       <button> Download</button>
