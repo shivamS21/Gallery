@@ -1,14 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
 // import { IconNames } from "@blueprintjs/icons";
-import { Button, Intent, HTMLSelect } from "@blueprintjs/core";
+import { HTMLSelect } from "@blueprintjs/core";
 import './App.css';
 import "@blueprintjs/core/lib/css/blueprint.css";
 // import * as Worker from "./worker";
 import Worker from "./Filter.worker.js";
 import {FILTER_OPTION, FORM_OPTION} from "./enums";
+import Button from '@material-ui/core/Button';
+// import imageToBase64 from 'image-to-base64/browser';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import {
+    selectImgId,
+    selectImg,
+    setSelectedImg,
+  } from "../../features/userSlice";
+  import { useSelector, useDispatch } from "react-redux";
 
-     function FilImg() {
-   
+function FilImg({open, setOpen}) {
+    const SelectedImg = useSelector(selectImg);
+    const dispatch = useDispatch();
     const INITIAL_FILENAME_STATE = "Choose file...";
     // web worker is not natively supported in a CRA (create-react-app)
     // work-around: https://medium.com/@danilog1905/how-to-use-web-workers-with-react-create-app-and-not-ejecting-in-the-attempt-3718d2a1166b
@@ -103,7 +114,7 @@ import {FILTER_OPTION, FORM_OPTION} from "./enums";
      * @desc Given an image src, draw a new image on canvas.
      */
     function drawImageOnCanvas(src) {
-        console.log(src)
+        // console.log(src)
         const img = new Image();
         img.setAttribute("src", src);
         setDownloadLink(src);
@@ -129,78 +140,70 @@ import {FILTER_OPTION, FORM_OPTION} from "./enums";
      */
     const renderDownloadButton = () => {
         if (downloadLink) {
+            // console.log("==============")
+            // console.log(downloadLink)
             return (
                 <a href={downloadLink} download>
-                    <button   className="download-btn"
+                   <Button autoFocus variant="contained" color="secondary" className="download-btn"
                         // rightIcon={IconNames.DOWNLOAD}
                         // intent={Intent.PRIMARY}
                         >
                     Download
-                    </button>
+                    </Button>
                       
                 
                 </a>
             );
         }
     };
-    function getBase64Image(imgUrl, callback) {
-        // console.log(imgUrl)
-        var img = new Image();
-    
-        // onload fires when the image is fully loadded, and has width and height
-    
-        img.onload = function(){
-    
-          var canvas = document.createElement("canvas");
-          canvas.width = img.width;
-          canvas.height = img.height;
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0);
-          var dataURL = canvas.toDataURL("image/png"),
-              dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-    
-          callback(dataURL); // the base64 string
-    
-        };
-    
-        // set attributes and src 
-        img.setAttribute('crossOrigin', 'anonymous'); //
-        img.src = imgUrl;
-    
+    function handleSave(){
+        if (downloadLink) {
+            // console.log(downloadLink)
+            dispatch(setSelectedImg(downloadLink));
+            setOpen(false);
+        }
     }
+    // function getBase64Image(imgUrl, callback) {
+    //     // console.log(imgUrl)
+    //     var img = new Image();
     
-    const loadCanvas = () => {
-        const url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-        getBase64Image(url, function(base64image){
-
-            // console.log(base64image);
-            drawImageOnCanvas("data:image/png;base64,"+base64image)
-            setLoaded(true)
-       });
-            
-    }
+    //     // onload fires when the image is fully loadded, and has width and height
+    
+    //     img.onload = function(){
+    
+    //       var canvas = document.createElement("canvas");
+    //       canvas.width = img.width;
+    //       canvas.height = img.height;
+    //       var ctx = canvas.getContext("2d");
+    //       ctx.drawImage(img, 0, 0);
+    //       var dataURL = canvas.toDataURL("image/png"),
+    //           dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    
+    //       callback(dataURL); // the base64 string
+    
+    //     };
+    
+    //     // set attributes and src 
+    //     img.setAttribute('crossOrigin', 'anonymous'); //
+    //     img.src = imgUrl;
+    
+    // }
+    
+    
 
     useEffect(() => {
-        loadCanvas() 
+        (async()=>{
+           
+        drawImageOnCanvas(SelectedImg)
+        setLoaded(true) 
+        })()
+         
     }, [])
     
     return (
         <div className="app">
             <main>
-                 {/* <Button onClick={loadCanvas}> Image Edit</Button> */}
-                {/* {isLoaded?  <canvas ref={canvasRef} width="400" height="400"/>
-                :""}  */}
-           
                 <div className="options">
-                    {/* <label className="bp3-file-input">
-                        <input
-                            type={"file"}
-                            accept="image/png, image/jpeg"
-                            data-form-option={FORM_OPTION.INPUT}
-                            ref={inputRef}
-                            onChange={handleOnChange}/>
-                        <span className="bp3-file-upload-input">{fileName}</span>
-                    </label> */}
                     <HTMLSelect
                         // iconProps={{icon: IconNames.FILTER_LIST}}
                         data-form-option={FORM_OPTION.SELECT}
@@ -213,6 +216,7 @@ import {FILTER_OPTION, FORM_OPTION} from "./enums";
                                 .map(value => <option key={value} value={value}>{value}</option>)
                         }
                     </HTMLSelect>
+                    <Button autoFocus variant="contained" color="secondary" onClick={handleSave}> Save</Button>
                     {renderDownloadButton()}
 
                 </div>

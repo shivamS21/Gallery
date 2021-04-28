@@ -83,7 +83,7 @@ const Modal = memo(() => {
             />
            <Title  isSelected={isSelected} />
            
-            <ContentPlaceholder /> 
+            <ContentPlaceholder setSelectedImg={setSelectedImg}/> 
           </motion.div>
        
         </div>

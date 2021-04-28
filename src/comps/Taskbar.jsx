@@ -10,28 +10,57 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import ImgFilter from "./FilterModel";
 import ImgCrop from "./CropModel";
+import ProgressBar from "./ProgressBarBase"
 export const ContentPlaceholder = React.memo(() => {
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImgId);
+  const SelectImg=useSelector(selectImg);
+  const [Save,SetSave]=React.useState(false)
   const dispatch = useDispatch();
+  const offScreen=()=>{
+    dispatch(setSelectedImg(null));
+  }
   const handleClick=(e)=>{
     projectFirestore.collection("images").doc(SelectedImg).delete().then(() => {
         console.log("Document successfully deleted!");
-        dispatch(setSelectedImg(null))
-
+        offScreen();
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
   }
+
+  const handleDownload=()=>{
+    const downloadLink = document.createElement("a");
+    const fileName = "image.png";
+    downloadLink.href = SelectImg;
+    downloadLink.download = fileName;
+    downloadLink.click();
+    downloadLink.remove();
+  }
+
+  
+  const handleSave=()=>{
+    SetSave(true);
+    // offScreen();
+  }
+
   return (
+    
     <motion.div
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      <ImgCrop/>
-      <ImgFilter/>
-      <Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button>
-      <Button variant="outlined" color="primary">Download</Button>
+      <div>
+            { Save && <ProgressBar message={SelectImg} name={SelectedImg} />}
+      </div>
+      <div style={{flexDirection:'row'}}>
+          <ImgCrop/>
+          <ImgFilter/>
+          <Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button>
+          <Button variant="outlined" color="primary" onClick={handleDownload}>Downlaod</Button>
+          <Button variant="outlined" color="primary" onClick={handleSave}>Save</Button>
+      </div>
+      
     </motion.div>
   );
 });

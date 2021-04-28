@@ -4,6 +4,7 @@
   --color-green: #7fcd91;
   --color-white: #f5eaea;
 }
+
 .app {
   display: flex;
   flex-direction: column;
