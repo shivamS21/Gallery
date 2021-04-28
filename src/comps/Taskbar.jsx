@@ -27,10 +27,10 @@ export const ContentPlaceholder = React.memo(() => {
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      <p style={{ color:"white" }}> Crop  </p>
+      <Button variant="outlined" color="primary">Crop</Button>
       <ImgFilter/>
-      <Button variant="contained" color="secondary" onClick={handleClick}>Delete</Button>
-      <button> Download</button>
+      <Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button>
+      <Button variant="outlined" color="primary">Download</Button>
     </motion.div>
   );
 });
