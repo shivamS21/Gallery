@@ -4,14 +4,14 @@ import UploadForm from './comps/UploadForm';
 import ImageGrid from './comps/ImageGrid.js';
 import Modal from './comps/Modal';
 import Navbar from './comps/Navbar';
-// import Example from './comps/FilterImg'
-// import Demo from './comps/Crop'
+import Collage from './comps/Collage'
 
 import { useSelector } from "react-redux";
 import {
   selectSignedIn,
   selectImg
 } from "./features/userSlice";
+
 function App() {
   // const [selectedImg, setSelectedImg] = useState(null);
   const isSignedIn = useSelector(selectSignedIn);
@@ -26,6 +26,7 @@ function App() {
       {isSignedIn ? (
       <div>
       <UploadForm />
+      <Collage/>
       <ImageGrid  /> 
       { selectedImg?(
         <Modal />

@@ -2,15 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import FilImg from './FilterImg/index.js'
+import Upload from './Upload'
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -25,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ImgFilter() {
+export default function Collage() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -40,7 +39,7 @@ export default function ImgFilter() {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Filter
+        Crop
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
@@ -49,14 +48,15 @@ export default function ImgFilter() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Filter Image
+              Crop Image
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              Save before Close
+              Scroll Below to Preview the Cropped Image
             </Typography>
           </Toolbar>
         </AppBar>
-        <FilImg/>
+        <Upload/>
+       
       </Dialog>
     </div>
   );

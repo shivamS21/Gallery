@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "axios-hooks": "^2.6.1",
     "blob": "^0.1.0",
+    "fabric-webpack": "^1.6.0-rc.1",
     "file-reader": "^1.1.1",
     "file-saver": "^2.0.5",
     "filereader": "^0.10.3",
@@ -21,6 +22,7 @@
     "framer-motion": "^2.1.2",
     "https": "^1.0.0",
     "image-to-base64": "^2.2.0",
+    "lodash.omit": "^4.5.0",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^16.13.1",
@@ -28,6 +30,7 @@
     "react-google-login": "^5.2.2",
     "react-image-crop": "^8.6.9",
     "react-image-filter": "^0.1.2",
+    "react-images-uploading": "^3.1.2",
     "react-redux": "^7.2.3",
     "react-scripts": "3.4.1",
     "worker-loader": "^3.0.8"
