@@ -38,8 +38,8 @@ export default function Collage() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Crop
+      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+        COLLAGE
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
@@ -48,10 +48,10 @@ export default function Collage() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Crop Image
+              COLLAGE
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              Scroll Below to Preview the Cropped Image
+              Save before Close
             </Typography>
           </Toolbar>
         </AppBar>

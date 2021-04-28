@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button';
 import "./styles.css";
+import ProgressBar from "../ProgressBarBase"
+
 const fabric = window.fabric
 function handleChange(canv) {
   let url=canv.toDataURL({ format: 'png', multiplier: 4 });
@@ -13,10 +15,7 @@ function handleChange(canv) {
   // console.log(canv.toDataURL({ format: 'png', multiplier: 4 }))
 }
 
-function handleSave(canv){
-  let url=canv.toDataURL({ format: 'png', multiplier: 4 });
-  console.log(url)
-}
+
 class DesignCanvas extends React.Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
@@ -29,12 +28,19 @@ class DesignCanvas extends React.Component {
   }
 
   state = {
-    canvas: null
+    canvas: null,
+    Save:null
   }
 
   componentDidMount() {
     const canvas = new fabric.Canvas(this.c)
     this.setState({ canvas })
+  }
+
+  handleSave(canv){
+    let url=canv.toDataURL({ format: 'jpeg', multiplier: 4 });
+    console.log(url)
+    this.setState({Save:url})
   }
 
   render() {
@@ -59,7 +65,7 @@ class DesignCanvas extends React.Component {
           &nbsp;
           <Button variant="contained" color="secondary"  style={{ marginTop:"5%"}}
           onClick={(e) => {
-            handleSave(this.state.canvas)
+            this.handleSave(this.state.canvas)
           }}>Save</Button>
           &nbsp;
           <Button variant="contained" color="secondary" style={{ marginTop:"5%"}}
@@ -69,7 +75,7 @@ class DesignCanvas extends React.Component {
         >
           Download
         </Button>
-        {/* { Save && <ProgressBar message={SelectImg} name={SelectedImg} />} */}
+        { this.state.Save && <ProgressBar message={this.state.Save} name={"collage.png"} />}
       </Fragment>
     )
   }

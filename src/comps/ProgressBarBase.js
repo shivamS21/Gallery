@@ -3,9 +3,9 @@ import useStorageBase from '../hooks/useStorageBase';
 import { motion } from 'framer-motion';
 
 const ProgressBar = ({message,name }) => {
- 
-  const { progress, url } = useStorageBase(message,name);
 
+  const { progress, url } = useStorageBase(message,name);
+  
   return (
     <motion.div className="progress-bar output"
       initial={{ width: 0 }}

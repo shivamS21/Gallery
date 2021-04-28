@@ -21,7 +21,7 @@ export default function Uplaod() {
 
   // console.log(images)
   return (
-    <div className="App">
+    <div className="collage">
       <ImageUploading
         multiple
         value={images}
