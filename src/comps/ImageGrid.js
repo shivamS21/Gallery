@@ -10,11 +10,16 @@ import {
 } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 const ImageGrid = () => {
+
   const { docs } = useFirestore('images');
   const dispatch = useDispatch();
-  const changeUrlId=(url,id)=>{
-    dispatch(setSelectedImg(url));
+
+  const changeUrlId=(url,id,message)=>{
+   
+    dispatch(setSelectedImg(message));
     dispatch(setSelectedImgId(id));
+        
+   
   }
   return (
     <div className="img-grid">
@@ -23,7 +28,7 @@ const ImageGrid = () => {
           layout
           whileHover={{ opacity: 1 }}s
 
-          onClick={() => changeUrlId(doc.url, doc.id)}
+          onClick={() => changeUrlId(doc.url, doc.id,doc.string)}
         >
           <motion.img src={doc.url} alt="uploaded pic"
             initial={{ opacity: 0 }}

@@ -53,9 +53,9 @@ export default function ImgFilter() {
             <Typography variant="h6" className={classes.title}>
               Filter Image
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button>
+            <Typography variant="h6" className={classes.title}>
+              Save before Close
+            </Typography>
           </Toolbar>
         </AppBar>
         <FilImg/>
