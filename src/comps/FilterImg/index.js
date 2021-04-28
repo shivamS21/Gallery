@@ -17,9 +17,9 @@ import {
   } from "../../features/userSlice";
   import { useSelector, useDispatch } from "react-redux";
 
-     function FilImg() {
-        const SelectedImg = useSelector(selectImg);
-        const dispatch = useDispatch();
+function FilImg({open, setOpen}) {
+    const SelectedImg = useSelector(selectImg);
+    const dispatch = useDispatch();
     const INITIAL_FILENAME_STATE = "Choose file...";
     // web worker is not natively supported in a CRA (create-react-app)
     // work-around: https://medium.com/@danilog1905/how-to-use-web-workers-with-react-create-app-and-not-ejecting-in-the-attempt-3718d2a1166b
@@ -159,7 +159,8 @@ import {
     function handleSave(){
         if (downloadLink) {
             // console.log(downloadLink)
-            dispatch(setSelectedImg(downloadLink))
+            dispatch(setSelectedImg(downloadLink));
+            setOpen(false);
         }
     }
     // function getBase64Image(imgUrl, callback) {
@@ -202,10 +203,7 @@ import {
     return (
         <div className="app">
             <main>
-          
-             
                 <div className="options">
-                
                     <HTMLSelect
                         // iconProps={{icon: IconNames.FILTER_LIST}}
                         data-form-option={FORM_OPTION.SELECT}

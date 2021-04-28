@@ -10,6 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from '@material-ui/core/styles';
+import { CenterFocusStrong } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
  
   buttons: {
@@ -45,7 +46,7 @@ function generateDownload(canvas, crop) {
 }
 
 
-export default function Crop() {
+export default function Crop({open, setOpen}) {
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ export default function Crop() {
   const [completedCrop, setCompletedCrop] = useState(null);
   const [circle,setCircle]=useState(false)
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function handleSave(canvas, crop){
     if (!crop || !canvas) {
@@ -128,46 +132,59 @@ useEffect(() => {
    
 }, [])
 
-  
+const multiTaskSave=()=>{
+  handleSave(previewCanvasRef.current, completedCrop);
+  handleClose();
+}
+
   return (
     <div style={{padding:"3%"}}>
       <div className={classes.buttons}>
-      <Button autoFocus variant="contained" color="secondary" onClick={c=>{setCircle(false)
-          setCrop({ unit: '%', width: 30, aspect: 16/ 9 })}}> 
-              Rectangle
-      </Button>
-     
-       <Button autoFocus variant="contained" color="secondary" onClick={c=>{setCircle(false)
-          setCrop({ unit: '%', width: 30, aspect: 9 / 9 })}}>Square  </Button>
-       <Button autoFocus variant="contained" color="secondary" onClick={c=>{
-          setCircle(true)
-          setCrop({ unit: '%', width: 30, aspect: 9 / 9 })}}>Circle  </Button>
-        <Button autoFocus variant="contained" color="secondary"  disabled={!completedCrop?.width || !completedCrop?.height} onClick={()=>handleSave(previewCanvasRef.current, completedCrop)}>Save </Button>
+        <Button autoFocus variant="contained" color="secondary" onClick={c=>{setCircle(false)
+            setCrop({ unit: '%', width: 30, aspect: 16/ 9 })}}> 
+                Rectangle
+        </Button>
+      
+        <Button autoFocus variant="contained" color="secondary" onClick={c=>{setCircle(false)
+            setCrop({ unit: '%', width: 30, aspect: 9 / 9 })}}>Square  </Button>
+        <Button autoFocus variant="contained" color="secondary" onClick={c=>{
+            setCircle(true)
+            setCrop({ unit: '%', width: 30, aspect: 9 / 9 })}}>Circle  </Button>
+        <Button autoFocus variant="contained" color="secondary"  disabled={!completedCrop?.width || !completedCrop?.height} onClick={()=>multiTaskSave()}>Save </Button>
         <Button autoFocus variant="contained" color="secondary"
-        disabled={!completedCrop?.width || !completedCrop?.height}
-        onClick={() =>
-          generateDownload(previewCanvasRef.current, completedCrop)
-        }  >
-        Download
+          disabled={!completedCrop?.width || !completedCrop?.height}
+          onClick={() =>
+            handleSave(previewCanvasRef.current, completedCrop)
+          }  >
+          Download
         </Button>
       </div>
       
     
-      <ReactCrop
-        src={upImg}
-        onImageLoaded={onLoad}
-        crop={crop}
-        circularCrop={circle}
-        onChange={(c) => setCrop(c)}
-        onComplete={(c) => setCompletedCrop(c)}
-      />
+      <div style={{textAlign: 'center'}}>
+        <ReactCrop
+          src={upImg}
+          onImageLoaded={onLoad}
+          crop={crop}
+          circularCrop={circle}
+          onChange={(c) => setCrop(c)}
+          onComplete={(c) => setCompletedCrop(c)}
+        />
+      </div>
       <div>
         <canvas
           ref={previewCanvasRef}
           // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
           style={{
-            width: Math.round(completedCrop?.width ?? 0),
-            height: Math.round(completedCrop?.height ?? 0),
+            marginTop: 20,
+            display: 'block',
+            marginLeft:'auto', 
+            marginRight:'auto',
+            borderStyle: 'solid',
+            borderColor: 'yellow',
+            borderWidth: '5px',
+            width: Math.round(completedCrop?.width +120?? 0),
+            height: Math.round(completedCrop?.height +120?? 0),
             borderRadius:(circle?"50%":"")
           }}
         />

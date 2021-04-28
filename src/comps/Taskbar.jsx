@@ -17,11 +17,13 @@ export const ContentPlaceholder = React.memo(() => {
   const SelectImg=useSelector(selectImg);
   const [Save,SetSave]=React.useState(false)
   const dispatch = useDispatch();
+  const offScreen=()=>{
+    dispatch(setSelectedImg(null));
+  }
   const handleClick=(e)=>{
     projectFirestore.collection("images").doc(SelectedImg).delete().then(() => {
         console.log("Document successfully deleted!");
-        dispatch(setSelectedImg(null))
-
+        offScreen();
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
@@ -38,8 +40,8 @@ export const ContentPlaceholder = React.memo(() => {
 
   
   const handleSave=()=>{
- 
-    SetSave(true)
+    SetSave(true);
+    // offScreen();
   }
 
   return (
@@ -48,12 +50,16 @@ export const ContentPlaceholder = React.memo(() => {
       className="content-container"
       style={{ ...inverted, originY: 0, originX: 0 }}
     >
-      { Save && <ProgressBar message={SelectImg} name={SelectedImg} />}
-      <ImgCrop/>
-      <ImgFilter/>
-      <Button variant="contained" color="secondary" onClick={handleClick}>Delete</Button>
-      <Button variant="contained" color="secondary" onClick={handleDownload}>Downlaod</Button>
-      <Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>
+      <div>
+            { Save && <ProgressBar message={SelectImg} name={SelectedImg} />}
+      </div>
+      <div style={{flexDirection:'row'}}>
+          <ImgCrop/>
+          <ImgFilter/>
+          <Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button>
+          <Button variant="outlined" color="primary" onClick={handleDownload}>Downlaod</Button>
+          <Button variant="outlined" color="primary" onClick={handleSave}>Save</Button>
+      </div>
       
     </motion.div>
   );

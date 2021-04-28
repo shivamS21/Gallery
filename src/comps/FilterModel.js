@@ -56,7 +56,7 @@ export default function ImgFilter() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <FilImg/>
+        <FilImg open={open} setOpen={setOpen}/>
       </Dialog>
     </div>
   );

@@ -54,7 +54,7 @@ export default function ImgCrop() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Crop/>
+        <Crop open={open} setOpen={setOpen}/>
       </Dialog>
     </div>
   );
