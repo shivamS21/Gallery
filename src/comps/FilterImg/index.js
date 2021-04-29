@@ -19,7 +19,7 @@ function FilImg({ setOpen}) {
     // const INITIAL_FILENAME_STATE = "Choose file...";
     // web worker is not natively supported in a CRA (create-react-app)
     // work-around: https://medium.com/@danilog1905/how-to-use-web-workers-with-react-create-app-and-not-ejecting-in-the-attempt-3718d2a1166b
-    const worker = new Worker();
+    
 
     // references to element on page
     const inputRef = useRef(null);
@@ -43,6 +43,7 @@ function FilImg({ setOpen}) {
      *  - update the download link to reflect the new canvas
      */
     useEffect(() => {
+        const worker = new Worker();
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d");
         if (imageData === null) return; // image not yet uploaded
@@ -53,7 +54,7 @@ function FilImg({ setOpen}) {
             context.putImageData(data, 0, 0);
             setDownloadLink(canvas.toDataURL());
         });
-    }, [currentFilterOption, imageData, worker]);
+    }, [currentFilterOption, imageData]);
 
     /**
      * @desc Draws a blank rect onto the canvas
