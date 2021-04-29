@@ -37,7 +37,7 @@ export function useInvertedBorderRadius(radius) {
       unsubScaleX();
       unsubScaleY();
     };
-  }, [radius]);
+  }, [radius, borderRadius, inverted.scaleX, inverted.scaleY]);
 
   return {
     scaleX,

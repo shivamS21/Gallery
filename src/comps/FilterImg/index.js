@@ -32,7 +32,7 @@ function FilImg({ setOpen}) {
     const [currentFilterOption, setCurrentFilterOption] = useState(FILTER_OPTION.NONE);
     const [downloadLink, setDownloadLink] = useState(null);
     const [isLoaded, setLoaded] = useState(false);
-    
+    console.log(fileName, isLoaded);
     /**
      * @desc Whenever the current filter changes,
      * AND imageData exists, execute the following:

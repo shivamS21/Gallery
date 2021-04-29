@@ -19,7 +19,6 @@ const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  let message="";
 
     const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -35,7 +34,7 @@ const useStorage = (file) => {
     (async ()=>{
       const storageRef = projectStorage.ref(file.name);
       const collectionRef = projectFirestore.collection('images');
-       message=await toBase64(file)
+      let message=await toBase64(file)
       storageRef.putString(message, 'data_url').on('state_changed', (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
         setProgress(percentage);
@@ -51,7 +50,7 @@ const useStorage = (file) => {
     })()
     // references
   
-  }, [message, emailID]);
+  }, [file, emailID]);
 
   return { progress, url, error };
 }
