@@ -16,7 +16,7 @@ import {
 function FilImg({ setOpen}) {
     const SelectedImg = useSelector(selectImg);
     const dispatch = useDispatch();
-    const INITIAL_FILENAME_STATE = "Choose file...";
+    // const INITIAL_FILENAME_STATE = "Choose file...";
     // web worker is not natively supported in a CRA (create-react-app)
     // work-around: https://medium.com/@danilog1905/how-to-use-web-workers-with-react-create-app-and-not-ejecting-in-the-attempt-3718d2a1166b
     const worker = new Worker();
@@ -27,12 +27,12 @@ function FilImg({ setOpen}) {
     const selectRef = useRef(null);
 
     // component state
-    const [fileName, setFileName] = useState(INITIAL_FILENAME_STATE);
+    // const [fileName, setFileName] = useState(INITIAL_FILENAME_STATE);
     const [imageData, setImageData] = useState(null);
     const [currentFilterOption, setCurrentFilterOption] = useState(FILTER_OPTION.NONE);
     const [downloadLink, setDownloadLink] = useState(null);
     const [isLoaded, setLoaded] = useState(false);
-    console.log(fileName, isLoaded);
+    console.log(isLoaded, inputRef);
     /**
      * @desc Whenever the current filter changes,
      * AND imageData exists, execute the following:
@@ -89,17 +89,17 @@ function FilImg({ setOpen}) {
      * @desc Read file as data URL and calls callback with result.
      * Updates the current filename.
      */
-    function readFileAsDataUrl(file, callback) {
-        const fileReader = new FileReader();
-        fileReader.addEventListener("load", () => {
-            // console.log("file"+fileReader.result)
-            callback(fileReader.result)
-        });
-        setFileName(file.name);
-        //console.log(fileName);
-        //console.log(isLoaded);
-        fileReader.readAsDataURL(file);
-    }
+    // function readFileAsDataUrl(file, callback) {
+    //     const fileReader = new FileReader();
+    //     fileReader.addEventListener("load", () => {
+    //         // console.log("file"+fileReader.result)
+    //         callback(fileReader.result)
+    //     });
+    //     setFileName(file.name);
+    //     //console.log(fileName);
+    //     //console.log(isLoaded);
+    //     fileReader.readAsDataURL(file);
+    // }
 
     /**
      * @param src - new image src
