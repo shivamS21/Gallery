@@ -1,13 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-// import { IconNames } from "@blueprintjs/icons";
 import { HTMLSelect } from "@blueprintjs/core";
 import './Filter.css';
 import "@blueprintjs/core/lib/css/blueprint.css";
-// import * as Worker from "./worker";
 import Worker from "./Filter.worker.js";
 import {FILTER_OPTION, FORM_OPTION} from "./enums";
 import Button from '@material-ui/core/Button';
-// import imageToBase64 from 'image-to-base64/browser';
 
 import {
     
@@ -35,7 +32,7 @@ function FilImg({ setOpen}) {
     const [currentFilterOption, setCurrentFilterOption] = useState(FILTER_OPTION.NONE);
     const [downloadLink, setDownloadLink] = useState(null);
     const [isLoaded, setLoaded] = useState(false);
-    
+    console.log(fileName, isLoaded);
     /**
      * @desc Whenever the current filter changes,
      * AND imageData exists, execute the following:
@@ -56,7 +53,7 @@ function FilImg({ setOpen}) {
             context.putImageData(data, 0, 0);
             setDownloadLink(canvas.toDataURL());
         });
-    }, [currentFilterOption]);
+    }, [currentFilterOption, imageData, worker]);
 
     /**
      * @desc Draws a blank rect onto the canvas
@@ -99,6 +96,8 @@ function FilImg({ setOpen}) {
             callback(fileReader.result)
         });
         setFileName(file.name);
+        //console.log(fileName);
+        //console.log(isLoaded);
         fileReader.readAsDataURL(file);
     }
 
@@ -133,13 +132,9 @@ function FilImg({ setOpen}) {
      */
     const renderDownloadButton = () => {
         if (downloadLink) {
-            // console.log("==============")
-            // console.log(downloadLink)
             return (
                 <a href={downloadLink} download>
                    <Button autoFocus variant="contained" color="secondary" className="download-btn"
-                        // rightIcon={IconNames.DOWNLOAD}
-                        // intent={Intent.PRIMARY}
                         >
                     Download
                     </Button>
@@ -162,34 +157,7 @@ function FilImg({ setOpen}) {
     function multiTaskSave(){
         handleSave();
         handleClose();
-      }
-    // function getBase64Image(imgUrl, callback) {
-    //     // console.log(imgUrl)
-    //     var img = new Image();
-    
-    //     // onload fires when the image is fully loadded, and has width and height
-    
-    //     img.onload = function(){
-    
-    //       var canvas = document.createElement("canvas");
-    //       canvas.width = img.width;
-    //       canvas.height = img.height;
-    //       var ctx = canvas.getContext("2d");
-    //       ctx.drawImage(img, 0, 0);
-    //       var dataURL = canvas.toDataURL("image/png"),
-    //           dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-    
-    //       callback(dataURL); // the base64 string
-    
-    //     };
-    
-    //     // set attributes and src 
-    //     img.setAttribute('crossOrigin', 'anonymous'); //
-    //     img.src = imgUrl;
-    
-    // }
-    
-    
+        }
 
     useEffect(() => {
         (async()=>{
@@ -198,7 +166,7 @@ function FilImg({ setOpen}) {
         setLoaded(true) 
         })()
          
-    }, [])
+    }, [SelectedImg])
     
     return (
         <div className="filter">

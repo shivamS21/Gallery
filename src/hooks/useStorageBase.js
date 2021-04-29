@@ -9,7 +9,6 @@ const useStorageBase = (message,name) => {
   const emailID = useSelector(selectUserData)?.email;
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
-  // const [url, setUrl] = useState(null);
    
 
   useEffect( () => {
@@ -17,12 +16,6 @@ const useStorageBase = (message,name) => {
      
       const storageRef = projectStorage.ref(name);
       const collectionRef = projectFirestore.collection('images');
-      // let message=await toBase64(file)
-      // console.log(message)
-      // await collectionRef.putString(message, 'base64url').then(function(snapshot) {
-      //    console.log('Uploaded a base64url string!');
-      //    console.log(snapshot)
-      //  })
       storageRef.putString(message, 'data_url').on('state_changed', (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
         setProgress(percentage);
@@ -39,7 +32,7 @@ const useStorageBase = (message,name) => {
     })()
     // references
   
-  }, [message, emailID]);
+  }, [message, emailID, name]);
 
   return { progress, error };
 }

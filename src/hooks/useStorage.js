@@ -19,7 +19,6 @@ const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  let message="";
 
     const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -35,12 +34,7 @@ const useStorage = (file) => {
     (async ()=>{
       const storageRef = projectStorage.ref(file.name);
       const collectionRef = projectFirestore.collection('images');
-       message=await toBase64(file)
-      // console.log(message)
-      // await collectionRef.putString(message, 'base64url').then(function(snapshot) {
-      //    console.log('Uploaded a base64url string!');
-      //    console.log(snapshot)
-      //  })
+      let message=await toBase64(file)
       storageRef.putString(message, 'data_url').on('state_changed', (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
         setProgress(percentage);
@@ -51,13 +45,12 @@ const useStorage = (file) => {
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
         await collectionRef.add({ email: emailID, url, createdAt,string:message });
-      //  console.log(url)
         setUrl(url);
       });
     })()
     // references
   
-  }, [message, emailID]);
+  }, [file, emailID]);
 
   return { progress, url, error };
 }

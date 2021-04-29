@@ -2,13 +2,10 @@ import React from 'react';
 import useFirestore from '../hooks/useFirestore';
 import { motion } from 'framer-motion';
 import {
-  selectSignedIn,
-  selectImg,
-  selectedImgId,
   setSelectedImg,
   setSelectedImgId
 } from "../features/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const ImageGrid = () => {
 
   const { docs } = useFirestore('images');

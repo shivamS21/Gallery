@@ -3,48 +3,20 @@ import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import Button from '@material-ui/core/Button';
 import {
-  selectImgId,
   selectImg,
   setSelectedImg,
 } from "../features/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from '@material-ui/core/styles';
-import { CenterFocusStrong } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
- 
   buttons: {
     display:"flex",
     justifyContent:"space-around",
     alignItems:"center",
     marginBottom:"2%",
-    
-    
   },
 }));
-
-function generateDownload(canvas, crop) {
-  if (!crop || !canvas) {
-    return;
-  }
-
-  canvas.toBlob(
-    (blob) => {
-      const previewUrl = window.URL.createObjectURL(blob);
-
-      const anchor = document.createElement('a');
-      anchor.download = 'cropPreview.png';
-      anchor.href = URL.createObjectURL(blob);
-      // console.log(anchor.href)
-      anchor.click();
-
-      window.URL.revokeObjectURL(previewUrl);
-    },
-    'image/png',
-    1
-  );
-}
-
 
 export default function Crop({open, setOpen}) {
 
@@ -121,7 +93,7 @@ export default function Crop({open, setOpen}) {
       crop.width,
       crop.height
     );
-  }, [completedCrop]);
+  }, [circle,completedCrop]);
    
 
 useEffect(() => {
@@ -130,7 +102,7 @@ useEffect(() => {
   })()
  
    
-}, [])
+}, [SelectedImg])
 
 const multiTaskSave=()=>{
   handleSave(previewCanvasRef.current, completedCrop);

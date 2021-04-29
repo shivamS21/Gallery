@@ -9,13 +9,11 @@ import {
   import { useDispatch } from "react-redux";
 
 export const Title = ({  isSelected }) => {
-    const dispatch = useDispatch();
-    const handleClick = (e => {
-        console.log(e)
-        dispatch(setSelectedImg(null))
-    
-        
-           })
+  const dispatch = useDispatch();
+  const handleClick = (e => {
+      console.log(e)
+      dispatch(setSelectedImg(null))
+  })
   const inverted = useInvertedScale();
   const x = 30 ;
   const y = x;
