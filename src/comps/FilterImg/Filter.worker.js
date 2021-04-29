@@ -77,9 +77,9 @@ function colorify(num) {
 // retrieve data from main thread
 // execute costly pixel manipulation in worker thread
 // send result back to main thread
-self.addEventListener("message", e => {
+window.self.addEventListener("message", e => {
     const {currentFilterOption, imageData} = e.data;
-    self.postMessage(getFilteredImageData(currentFilterOption, imageData));
+    window.self.postMessage(getFilteredImageData(currentFilterOption, imageData));
 });
 
 
