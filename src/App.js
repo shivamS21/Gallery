@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Title from './comps/Title';
 import UploadForm from './comps/UploadForm';
 import ImageGrid from './comps/ImageGrid.js';
 import Modal from './comps/Modal';
 import Navbar from './comps/Navbar';
 import Collage from './comps/Collage'
-
+import './styling/styles.css'
 import { useSelector } from "react-redux";
 import {
   selectSignedIn,
@@ -26,7 +26,11 @@ function App() {
       {isSignedIn ? (
       <div>
       <UploadForm />
-      <Collage/>
+      <div className="collage-button">
+        
+         <Collage/>
+      </div>
+     
       <ImageGrid  /> 
       { selectedImg?(
         <Modal />

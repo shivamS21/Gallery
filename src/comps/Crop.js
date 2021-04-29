@@ -93,7 +93,7 @@ export default function Crop({open, setOpen}) {
       crop.width,
       crop.height
     );
-  }, [completedCrop]);
+  }, [circle,completedCrop]);
    
 
 useEffect(() => {
@@ -102,7 +102,7 @@ useEffect(() => {
   })()
  
    
-}, [])
+}, [SelectedImg])
 
 const multiTaskSave=()=>{
   handleSave(previewCanvasRef.current, completedCrop);

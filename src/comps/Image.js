@@ -2,17 +2,15 @@ import * as React from "react";
 import { motion, useInvertedScale } from "framer-motion";
 import { closeSpring } from "./animation";
 import {
-    selectImg,
-    setSelectedImg
+    selectImg
   } from "../features/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import '../styling/styles.css';
 export const Image = ({
   id=1,
   pointOfInterest = 0,
   backgroundColor="grey"
 }) => {
-  const dispatch = useDispatch();
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImg);
   // console.log(setSelectedImg?'exists':'not')

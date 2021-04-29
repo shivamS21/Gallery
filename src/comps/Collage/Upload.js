@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 import ImageUploading from "react-images-uploading";
 import 'fabric-webpack'
 import DesignCanvas from './DesignCanvas'
@@ -10,18 +10,16 @@ import "./styles.css";
 export default function Uplaod() {
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList) => {
     // data for submit
     // console.log(addUpdateIndex);
     setImages(imageList);
   };
-  const onImageRemoveAll = () => {
-    setImages([]);
-  };
+
 
   // console.log(images)
   return (
-    <div className="App">
+    <div className="collage">
       <ImageUploading
         multiple
         value={images}
@@ -31,14 +29,15 @@ export default function Uplaod() {
       >
         {({ onImageUpload, onImageRemove, onImageUpdate }) => (
           // write your building UI
-          <div>
+        
           <div className="upload__image-wrapper">
-          <Button variant="contained" color="secondary" onClick={onImageUpload}>Click</Button>
+          <Button variant="contained" color="secondary" onClick={onImageUpload}>UPLOAD MULTIPLE IMAGES</Button>
             &nbsp;
             
           <DesignCanvas>
-        {images.map(image => (
+        {images.map((image,index) => (
  <Image
+ key={index}
  url={image.data_url}
  crossOrigin=""
  scale={0.2}
@@ -49,7 +48,7 @@ export default function Uplaod() {
      
     </DesignCanvas>
           </div>
-          </div>
+          
         )}
       </ImageUploading>
     </div>

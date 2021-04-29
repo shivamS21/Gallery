@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Crop from './Crop'
+
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -25,18 +27,22 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ImgCrop() {
   const classes = useStyles();
+ 
+  
   const [open, setOpen] = React.useState(false);
+
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    
     setOpen(false);
   };
 
   return (
-    <div>
+    <>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Crop
       </Button>
@@ -56,6 +62,6 @@ export default function ImgCrop() {
         </AppBar>
         <Crop open={open} setOpen={setOpen}/>
       </Dialog>
-    </div>
+    </>
   );
 }

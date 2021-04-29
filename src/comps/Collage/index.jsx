@@ -11,8 +11,12 @@ import Slide from '@material-ui/core/Slide';
 import Upload from './Upload'
 
 const useStyles = makeStyles((theme) => ({
+  dialog:{
+    width:'100%'
+  },
   appBar: {
     position: 'relative',
+    width:'600px'
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -38,20 +42,20 @@ export default function Collage() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Crop
+      <Button variant="contained" color="primary" onClick={handleClickOpen}>
+        COLLAGE
       </Button>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} className={classes.dialog}>
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Crop Image
+              COLLAGE
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              Scroll Below to Preview the Cropped Image
+              Save before Close
             </Typography>
           </Toolbar>
         </AppBar>

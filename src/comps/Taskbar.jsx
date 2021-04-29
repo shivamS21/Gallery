@@ -53,12 +53,12 @@ export const ContentPlaceholder = React.memo(() => {
       <div>
             { Save && <ProgressBar message={SelectImg} name={SelectedImg} />}
       </div>
-      <div style={{flexDirection:'row'}}>
-          <ImgCrop/>
-          <ImgFilter/>
-          <Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button>
-          <Button variant="outlined" color="primary" onClick={handleDownload}>Downlaod</Button>
-          <Button variant="outlined" color="primary" onClick={handleSave}>Save</Button>
+      <div style={{display:"flex","justifyContent":"space-between","alignItems":"center"}} >
+        <div style={{marginRight:"1%"}}><ImgFilter/></div>
+        <div style={{marginLeft:"1%",marginRight:"1%"}} ><ImgCrop/></div>
+        <div style={{marginLeft:"1%",marginRight:"1%"}} ><Button variant="outlined" color="primary" onClick={handleDownload}>Downlaod</Button></div>
+        <div style={{marginLeft:"1%",marginRight:"1%"}} ><Button variant="outlined" color="primary" onClick={handleSave}>Save</Button></div>
+        <div style={{marginLeft:"1%"}} ><Button variant="outlined" color="primary" onClick={handleClick}>Delete</Button></div>  
       </div>
       
     </motion.div>

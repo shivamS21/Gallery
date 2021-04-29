@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { memo, useRef }  from "react";
-import { Scroll } from "framer-motion";
 import {
   selectImg,
   setSelectedImg
@@ -8,7 +7,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { motion, useMotionValue } from "framer-motion";
 
-// import { Link } from "react-router-dom";
 import { useInvertedBorderRadius } from "../utils/use-inverted-border-radius";
 
 import { ContentPlaceholder } from "./Taskbar.jsx";
@@ -106,13 +104,3 @@ const Overlay = ({ isSelected }) => (
 
 
 export default Modal;
-
-{/* <motion.div  onClick={handleClick}
-initial={{ opacity: 0 }}
-animate={{ opacity: 1 }}
->
-<motion.img src={selectedImg} alt="enlarged pic" 
-  initial={{ y: "-100vh" }}
-  animate={{ y: 0 }}
-/>
-</motion.div> */}
