@@ -11,8 +11,12 @@ import Slide from '@material-ui/core/Slide';
 import Upload from './Upload'
 
 const useStyles = makeStyles((theme) => ({
+  dialog:{
+    width:'100%'
+  },
   appBar: {
     position: 'relative',
+    width:'600px'
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -41,7 +45,7 @@ export default function Collage() {
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         COLLAGE
       </Button>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} className={classes.dialog}>
         <AppBar className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">

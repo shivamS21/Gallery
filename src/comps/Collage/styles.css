@@ -6,6 +6,10 @@
     margin-top: 3%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width:100%;
+    min-width: 600px;
   }
   .image-item {
     display: flex;
@@ -20,6 +24,10 @@
   
 .canvas{
    margin-top: 4%;
-   padding-bottom: 4%;
-    border: 8px solid black;
+  border: 8px solid black;
+
+}
+
+.upload__image-wrapper{
+   min-width: 600px;
 }

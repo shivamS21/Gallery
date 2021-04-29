@@ -1,13 +1,12 @@
 import * as React from "react";
 import { motion, useInvertedScale } from "framer-motion";
-import { closeSpring, openSpring } from "./animation";
-import { sortedLastIndexOf } from "lodash";
+import {  openSpring } from "./animation";
+
 import Button from '@material-ui/core/Button';
 import {
-    selectImg,
     setSelectedImg
   } from "../features/userSlice";
-  import { useDispatch, useSelector } from "react-redux";
+  import { useDispatch } from "react-redux";
 
 export const Title = ({  isSelected }) => {
     const dispatch = useDispatch();

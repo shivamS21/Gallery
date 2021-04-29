@@ -1,23 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
 // import { IconNames } from "@blueprintjs/icons";
 import { HTMLSelect } from "@blueprintjs/core";
-import './App.css';
+import './Filter.css';
 import "@blueprintjs/core/lib/css/blueprint.css";
 // import * as Worker from "./worker";
 import Worker from "./Filter.worker.js";
 import {FILTER_OPTION, FORM_OPTION} from "./enums";
 import Button from '@material-ui/core/Button';
 // import imageToBase64 from 'image-to-base64/browser';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+
 import {
-    selectImgId,
+    
     selectImg,
     setSelectedImg,
   } from "../../features/userSlice";
   import { useSelector, useDispatch } from "react-redux";
 
-function FilImg({open, setOpen}) {
+function FilImg({ setOpen}) {
     const SelectedImg = useSelector(selectImg);
     const dispatch = useDispatch();
     const INITIAL_FILENAME_STATE = "Choose file...";
@@ -133,7 +132,7 @@ function FilImg({open, setOpen}) {
             setImageData(context.getImageData(0,0, canvas.width, canvas.height));
         });
     }
-
+    
     /**
      * @desc Only render the download button
      * if the downloadLink is truthy.
@@ -160,9 +159,16 @@ function FilImg({open, setOpen}) {
         if (downloadLink) {
             // console.log(downloadLink)
             dispatch(setSelectedImg(downloadLink));
-            setOpen(false);
         }
     }
+    const handleClose = () => {
+        setOpen(false);
+      };
+
+    function multiTaskSave(){
+        handleSave();
+        handleClose();
+      }
     // function getBase64Image(imgUrl, callback) {
     //     // console.log(imgUrl)
     //     var img = new Image();
@@ -201,7 +207,7 @@ function FilImg({open, setOpen}) {
     }, [])
     
     return (
-        <div className="app">
+        <div className="filter">
             <main>
                 <div className="options">
                     <HTMLSelect
@@ -216,7 +222,7 @@ function FilImg({open, setOpen}) {
                                 .map(value => <option key={value} value={value}>{value}</option>)
                         }
                     </HTMLSelect>
-                    <Button autoFocus variant="contained" color="secondary" onClick={handleSave}> Save</Button>
+                    <Button autoFocus variant="contained" color="secondary" onClick={multiTaskSave}> Save</Button>
                     {renderDownloadButton()}
 
                 </div>

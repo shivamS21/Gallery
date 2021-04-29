@@ -5,7 +5,7 @@
   --color-white: #f5eaea;
 }
 
-.app {
+.filter {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,10 +14,10 @@
   /* min-height: 100vh; */
   color: var(--color-white);
   padding: 0 5em;
-  width: fit-content;
+  width: 100%;
   min-width: 100%;
 }
-.app main {
+.filter main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,19 +25,19 @@
   position: relative;
   margin: 5em;
 }
-.app main canvas {
+.filter main canvas {
   background-color: var(--color-white);
 }
-.app main .options {
+.filter main .options {
   display: flex;
   justify-content: center;
   margin-bottom: 1em;
   width: fit-content;
 }
-.app main .options > * {
+.filter main .options > * {
   margin-right: 1em;
   height: 100%;
 }
-.app main .options .select {
+.filter main .options .select {
   width: max-content;
 }

@@ -1,4 +1,4 @@
-"use strict";
+
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useWheelScroll = void 0;
 var framer_motion_1 = require("framer-motion");

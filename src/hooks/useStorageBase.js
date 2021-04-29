@@ -9,7 +9,7 @@ const useStorageBase = (message,name) => {
   const emailID = useSelector(selectUserData)?.email;
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
-  const [url, setUrl] = useState(null);
+  // const [url, setUrl] = useState(null);
    
 
   useEffect( () => {
@@ -34,14 +34,14 @@ const useStorageBase = (message,name) => {
         const createdAt = timestamp();
         await collectionRef.add({ email: emailID, url, createdAt,string:message });
      
-        setUrl(url);
+        // setUrl(url);
       });
     })()
     // references
   
   }, [message, emailID]);
 
-  return { progress, url, error };
+  return { progress, error };
 }
 
 export default useStorageBase;

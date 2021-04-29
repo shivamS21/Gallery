@@ -216,9 +216,9 @@
   }
   
   .content-container {
-    padding: 35px 35px 35px 35px;
-    max-width: 700px;
-    width: 90vw;
+    padding: 3%;
+    max-width: 100%;
+    width: 100%;
     display: flex; 
     justify-content: space-around;
     flex-direction: column;
@@ -228,9 +228,9 @@
     align-items: center;
     justify-content: center; */
   }
-  .Buttons {
-    flex:row;
-  }
+
+ 
+
   p {
     color: #9d9ca1;
     font-size: 20px;

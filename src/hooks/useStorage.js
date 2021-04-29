@@ -2,24 +2,25 @@ import { useState, useEffect } from 'react';
 import { projectStorage, projectFirestore, timestamp } from '../firebase/config';
 import { useSelector } from "react-redux";
 import{ selectUserData } from "../features/userSlice";
-const toBase64 = (file) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = error => reject(error);
-});
+// const toBase64 = (file) => new Promise((resolve, reject) => {
+//   const reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onload = () => resolve(reader.result);
+//   reader.onerror = error => reject(error);
+// });
 
-async function Main(files) {
-  const file = await toBase64(files);  
-  // console.log('check1',file);
-  return file;
-}
+// async function Main(files) {
+//   const file = await toBase64(files);  
+//   // console.log('check1',file);
+//   return file;
+// }
 const useStorage = (file) => {
   const emailID = useSelector(selectUserData)?.email;
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  let message=""
+  let message="";
+
     const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => {resolve(reader.result)});
