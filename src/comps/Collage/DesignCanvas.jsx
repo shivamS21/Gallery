@@ -20,6 +20,7 @@ class DesignCanvas extends React.Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    setImages:PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -29,7 +30,8 @@ class DesignCanvas extends React.Component {
 
   state = {
     canvas: null,
-    Save:null
+    Save:null,
+    warning:false
   }
 
   componentDidMount() {
@@ -38,9 +40,15 @@ class DesignCanvas extends React.Component {
   }
 
   handleSave(canv){
+    this.setState({warning:false})
     let url=canv.toDataURL({ format: 'jpeg', multiplier: 4 });
-    console.log(url)
+    if(url.length<1048487)
     this.setState({Save:url})
+    else this.setState({warning:true})
+    // console.log(url.length)
+    // 1048487
+    // console.log(url)
+    
   }
 
   render() {
@@ -59,6 +67,7 @@ class DesignCanvas extends React.Component {
           onClick={(e) => {
             e.preventDefault()
             this.state.canvas.clear()
+            this.props.setImages([])
           }}
         >
           Clear </Button>
@@ -75,6 +84,7 @@ class DesignCanvas extends React.Component {
         >
           Download
         </Button>
+        {this.state.warning && <div style={{color:"red"}}>The collage exceeds limit of 1MB. Try with lesser size images.</div>}
         { this.state.Save && <ProgressBar message={this.state.Save} name={"collage.png"} />}
       </Fragment>
     )

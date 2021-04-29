@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     position: 'relative',
-    width:'600px'
+    minWidth:"600px",
+    width:'100%'
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -54,9 +55,7 @@ export default function Collage() {
             <Typography variant="h6" className={classes.title}>
               COLLAGE
             </Typography>
-            <Typography variant="h6" className={classes.title}>
-              Save before Close
-            </Typography>
+           
           </Toolbar>
         </AppBar>
         <Upload/>

@@ -9,7 +9,8 @@ import "./styles.css";
 
 export default function Uplaod() {
   const [images, setImages] = React.useState([]);
-  const maxNumber = 69;
+
+  const maxNumber = 4;
   const onChange = (imageList) => {
     // data for submit
     // console.log(addUpdateIndex);
@@ -20,6 +21,7 @@ export default function Uplaod() {
   // console.log(images)
   return (
     <div className="collage">
+      <h1 style={{color:"black"}}>You can upload maximum 4 images</h1>
       <ImageUploading
         multiple
         value={images}
@@ -31,10 +33,11 @@ export default function Uplaod() {
           // write your building UI
         
           <div className="upload__image-wrapper">
+          
           <Button variant="contained" color="secondary" onClick={onImageUpload}>UPLOAD MULTIPLE IMAGES</Button>
             &nbsp;
             
-          <DesignCanvas>
+          <DesignCanvas setImages={setImages}>
         {images.map((image,index) => (
  <Image
  key={index}
