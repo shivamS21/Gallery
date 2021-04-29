@@ -23,6 +23,7 @@
     "https": "^1.0.0",
     "image-to-base64": "^2.2.0",
     "lodash.omit": "^4.5.0",
+    "netlify-cli": "^3.23.1",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^16.13.1",
@@ -37,7 +38,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-scripts build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },

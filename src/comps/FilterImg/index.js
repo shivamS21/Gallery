@@ -77,12 +77,6 @@ function FilImg({ setOpen}) {
     const handleOnChange = e => {
         const {formOption} = e.target.dataset;
         switch (formOption) {
-            case FORM_OPTION.INPUT:
-                const {files} = inputRef.current;
-                if (files && files[0]) {
-                    readFileAsDataUrl(files[0], drawImageOnCanvas);
-                }
-                break;
             case FORM_OPTION.SELECT:
                 const {value: filterOption} = e.target;
                 setCurrentFilterOption(filterOption);
