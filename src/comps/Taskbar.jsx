@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from '@material-ui/core/Button';
 import ImgFilter from "./FilterModel";
 import ImgCrop from "./CropModel";
-import ProgressBar from "./ProgressBarBase"
+import ProgressBar from "./ProgressBarBase";
 export const ContentPlaceholder = React.memo(() => {
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImgId);
