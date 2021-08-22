@@ -26,7 +26,7 @@ const Title = () => {
        <h2>Your Pictures</h2>
       <p>A picture is a poem without words.</p>
       {!isSignedIn ? (<GoogleLogin
-            clientId="816863996365-d1oaheqqrpnu80l82m5kruqn74gucb4f.apps.googleusercontent.com"
+            clientId="816863996365-86ju8qfuctklfde91bu1moacoip0qugh.apps.googleusercontent.com"
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}
