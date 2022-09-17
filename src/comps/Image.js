@@ -13,8 +13,6 @@ export const Image = ({
 }) => {
   const inverted = useInvertedScale();
   const SelectedImg = useSelector(selectImg);
-  // console.log(setSelectedImg?'exists':'not')
-  // console.log(SelectedImg)
   
   return (
     <motion.div
@@ -26,9 +24,6 @@ export const Image = ({
         src={SelectedImg}
         alt="Enlarged pic"
         initial={false}
-        // animate={ { x:-20,y:-20}
-        //     // setSelectedImg ? { x: -20, y: -20 } : { x: -pointOfInterest, y: 0 }
-        // }
         transition={closeSpring}
       />
     </motion.div>

@@ -28,11 +28,7 @@ export const Title = ({  isSelected }) => {
       transformTemplate={scaleTranslate}
       style={{ ...inverted, originX: 0, originY: 0 }}
     >
-      {/* <span className="category">{category}</span> */}
       <Button variant="contained" color="secondary" onClick={handleClick}>Close</Button>
-      {/* <h2>
-        Image 
-      </h2> */}
     </motion.div>
   );
 };

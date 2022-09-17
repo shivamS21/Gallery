@@ -13,7 +13,6 @@ import {
 } from "./features/userSlice";
 
 function App() {
-  // const [selectedImg, setSelectedImg] = useState(null);
   const isSignedIn = useSelector(selectSignedIn);
   const selectedImg = useSelector(selectImg);
   
@@ -23,19 +22,21 @@ function App() {
       <Navbar/>
       <Title/>
       
-      {isSignedIn ? (
-      <div>
-      <UploadForm />
-      <div className="collage-button">
-        
-         <Collage/>
-      </div>
-     
-      <ImageGrid  /> 
-      { selectedImg?(
-        <Modal />
-      ):""}  
-      </div>):("")} 
+      {
+        isSignedIn ? (
+        <div>
+        <UploadForm />
+        <div className="collage-button">
+          
+          <Collage/>
+        </div>
+      
+        <ImageGrid  /> 
+        { selectedImg?(
+          <Modal />
+        ):""}  
+        </div>):("")
+      } 
     </div>
   );
 }

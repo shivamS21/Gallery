@@ -41,7 +41,6 @@ export const ContentPlaceholder = React.memo(() => {
   
   const handleSave=()=>{
     SetSave(true);
-    // offScreen();
   }
 
   return (

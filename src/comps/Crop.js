@@ -42,7 +42,6 @@ export default function Crop({open, setOpen}) {
     var pngUrl = canvas.toDataURL();
     dispatch(setSelectedImg(pngUrl))
     
-    // console.log(pngUrl)
   }
 
   const onLoad = useCallback((img) => {

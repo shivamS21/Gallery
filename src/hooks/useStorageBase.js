@@ -27,7 +27,6 @@ const useStorageBase = (message,name) => {
         const createdAt = timestamp();
         await collectionRef.add({ email: emailID, url, createdAt,string:message });
      
-        // setUrl(url);
       });
     })()
     // references

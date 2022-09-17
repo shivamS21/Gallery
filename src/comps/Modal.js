@@ -98,7 +98,6 @@ const Overlay = ({ isSelected }) => (
     style={{ pointerEvents: "auto" }}
     className="overlay"
   >
-    {/* <Link to="/" /> */}
   </motion.div>
 );
 
