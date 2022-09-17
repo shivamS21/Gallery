@@ -3,7 +3,7 @@
 * The user can choose to keep pictures in their personalised account which he/she will be able to access through google auth 2.0.
 * He/she can choose to download/delete the pictures on his/her personlised dashboard.
 
-This project was bootstrapped with React.
+This project is bootstrapped with React and Firebase is used for database.
 
 # Run
 Clone the repo and then install all packages using "npm install"
